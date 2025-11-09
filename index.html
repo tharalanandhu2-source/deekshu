@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DEEKSHU Beauty Parlour — About</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* -------------------- Reset & Base -------------------- */
+    :root{
+      --accent:#6b2dd6; /* purple */
+      --accent-2:#3b82f6; /* royal blue */
+      --muted:#f7eff6;
+      --text:#222;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+    html,body{height:100%;background:#fff;color:var(--text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* -------------------- Header -------------------- */
+    header{
+      position:sticky;top:0;z-index:60;
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.85);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      padding:14px 28px; display:flex;align-items:center;justify-content:space-between;
+    }
+    .logo{font-weight:700;color:var(--accent);font-size:1.4rem;letter-spacing:0.6px}
+    nav a{margin-left:18px;color:#444;font-weight:600}
+    nav a.active{color:var(--accent);}
+
+    /* -------------------- HERO -------------------- */
+    .hero{
+      height:56vh; min-height:360px;
+      background:linear-gradient(180deg, rgba(11,10,22,0.15), rgba(11,10,22,0.03)), url('https://picsum.photos/1200/700?blur=2') center/cover no-repeat;
+      display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;padding:40px;
+    }
+    .hero .inner{max-width:980px}
+    .hero h1{font-size:2.6rem;margin-bottom:8px;text-shadow:0 8px 28px rgba(0,0,0,0.35)}
+    .hero p{font-size:1.05rem;opacity:0.95;margin-bottom:18px}
+
+    .btn{
+      display:inline-block;padding:10px 18px;border-radius:10px;background:linear-gradient(90deg,var(--accent-2),var(--accent));
+      color:white;border:none;font-weight:700;cursor:pointer;box-shadow: 0 8px 30px rgba(59,130,246,0.12);
+      transition:transform .22s ease,box-shadow .22s ease;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(107,45,214,0.12)}
+
+    /* -------------------- Page container -------------------- */
+    .container{max-width:1120px;margin:36px auto;padding:0 20px}
+
+    h2.section-title{font-size:1.6rem;margin-bottom:12px;color:var(--accent)}
+    p.lead{color:#444;line-height:1.6;margin-bottom:18px}
+
+    /* -------------------- Services grid -------------------- */
+    .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:18px}
+    .service-card{background:var(--muted);padding:14px;border-radius:12px;text-align:center;box-shadow:0 6px 18px rgba(15,10,40,0.03)}
+    .service-card img{height:140px;object-fit:cover;border-radius:10px}
+
+    /* -------------------- About / Founder -------------------- */
+    .team{display:flex;gap:28px;align-items:center;flex-wrap:wrap;margin-top:20px;justify-content:center}
+    .member{width:260px;text-align:center}
+    .member img{border-radius:10px}
+    .member h3{margin-top:12px;font-size:1.05rem;color:#111}
+    .member p{color:#666;font-size:0.95rem;margin-top:6px}
+
+    /* Founder special wrapper: gradient background + circular image */
+    .founder-wrapper{
+      width:260px;
+      height:320px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      border-radius:20px;
+      padding:18px;
+      background: linear-gradient(180deg, rgba(59,130,246,0.09), rgba(107,45,214,0.06));
+      box-shadow: 0 18px 50px rgba(59,30,110,0.06), inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+
+    /* The gradient ring and shine behind the circular image */
+    .founder-bg {
+      position:absolute; left:50%; top:26%;
+      transform:translateX(-50%);
+      width:210px;height:210px;
+      border-radius:50%;
+      z-index:1;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.12), rgba(255,255,255,0) 18%),
+                 linear-gradient(135deg, rgba(59,130,246,0.9), rgba(107,45,214,0.95));
+      filter: blur(18px);
+      opacity:0.95;
+    }
+
+    .founder-img-wrapper{
+      position:relative; z-index:2;
+      width:200px;height:200px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;
+      border:6px solid rgba(255,255,255,0.12);
+      box-shadow: 0 10px 28px rgba(64,20,120,0.18);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.02));
+      transition: transform .28s ease, box-shadow .28s ease;
+    }
+    .founder-img-wrapper:hover{ transform:translateY(-6px) scale(1.02); box-shadow:0 26px 60px rgba(64,20,120,0.22) }
+
+    .founder-img{
+      width:100%;height:100%;object-fit:cover;display:block;
+      -webkit-mask-image: radial-gradient(circle at center, #000 0%, #000 60%, transparent 61%); /* ensures circular on some browsers */
+      mask-image: radial-gradient(circle at center, #000 0%, #000 60%, transparent 61%);
+    }
+
+    .founder-info{margin-top:18px;text-align:center}
+    .founder-name{font-weight:800;color:#111;font-size:1.05rem}
+    .founder-role{color:#6b3ea0;font-size:0.95rem;margin-top:6px}
+
+    /* Upload control (nice small) */
+    .upload-cta{margin-top:12px;display:flex;gap:10px;justify-content:center;align-items:center}
+    .upload-cta input[type=file]{display:none}
+    .upload-cta label{cursor:pointer;padding:8px 12px;border-radius:9px;background:linear-gradient(90deg,var(--accent-2),var(--accent));color:white;font-weight:700;font-size:0.9rem;box-shadow:0 8px 30px rgba(63,82,210,0.12)}
+    .upload-cta .clear-btn{background:transparent;border:1px solid rgba(107,45,214,0.12);padding:8px 12px;border-radius:9px;font-weight:700;color:var(--accent);cursor:pointer}
+
+    /* -------------------- Booking form & contact -------------------- */
+    .booking-form, .contact-form{max-width:520px;margin:18px auto 34px;background:linear-gradient(180deg,rgba(255,255,255,0.95), #fff);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(20,12,60,0.04)}
+    .booking-form input,.booking-form select,.contact-form input,.contact-form textarea{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(16,16,16,0.06);margin-bottom:12px;font-size:0.96rem}
+    .booking-form button,.contact-form button{width:100%;padding:12px;border-radius:8px;border:0;background:linear-gradient(90deg,var(--accent-2),var(--accent));color:white;font-weight:700;cursor:pointer}
+
+    /* -------------------- Footer -------------------- */
+    footer{padding:20px;text-align:center;color:#666;margin-top:40px;border-top:1px solid rgba(0,0,0,0.02)}
+    /* Responsive tweaks */
+    @media (max-width:900px){
+      .founder-wrapper{width:230px;height:300px}
+      .member{width:220px}
+    }
+    @media (max-width:640px){
+      header{padding:12px}
+      .hero h1{font-size:1.8rem}
+      .team{gap:16px}
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="logo">DEEKSHU</div>
+    <nav>
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#booking">Book</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="hero" aria-label="Hero">
+    <div class="inner">
+      <h1>Welcome to DEEKSHU Beauty Parlour</h1>
+      <p>Where beauty blossoms — professional services, warm care, and a stylish experience.</p>
+      <div style="margin-top:14px">
+        <button class="btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Appointment</button>
+      </div>
+    </div>
+  </section>
+
+  <main class="container" id="main">
+    <!-- INTRO -->
+    <section class="intro">
+      <h2 class="section-title">Discover Your Beauty</h2>
+      <p class="lead">Experience premium beauty and spa services crafted just for you. Step into elegance and leave with confidence.</p>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <h2 class="section-title">Our Services</h2>
+      <div class="service-grid" role="list">
+        <div class="service-card" role="listitem">
+          <img src="https://picsum.photos/400/300?random=1" alt="Hair Styling">
+          <h3 style="margin-top:10px;color:var(--accent)">Hair Styling</h3>
+        </div>
+        <div class="service-card">
+          <img src="https://picsum.photos/400/300?random=2" alt="Facials">
+          <h3 style="margin-top:10px;color:var(--accent)">Facials</h3>
+        </div>
+        <div class="service-card">
+          <img src="https://picsum.photos/400/300?random=3" alt="Makeup">
+          <h3 style="margin-top:10px;color:var(--accent)">Makeup</h3>
+        </div>
+        <div class="service-card">
+          <img src="https://picsum.photos/400/300?random=4" alt="Spa">
+          <h3 style="margin-top:10px;color:var(--accent)">Spa Treatments</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING FORM -->
+    <section id="booking" style="margin-top:30px">
+      <h2 class="section-title">Book Your Appointment</h2>
+      <form id="bookingForm" class="booking-form" aria-label="Booking form">
+        <input id="bname" type="text" placeholder="Full Name" required>
+        <input id="bphone" type="tel" placeholder="Phone Number" required>
+        <input id="bemail" type="email" placeholder="Email Address" required>
+        <select id="bservice" required>
+          <option value="">Select Service</option>
+          <option>Hair Styling</option>
+          <option>Facial</option>
+          <option>Makeup</option>
+          <option>Spa</option>
+        </select>
+        <input id="bdate" type="date" required>
+        <input id="btime" type="time" required>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <!-- ABOUT / TEAM -->
+    <section id="about" style="margin-top:12px">
+      <h2 class="section-title">About Us</h2>
+      <p class="lead">At <strong>DEEKSHU Beauty Parlour</strong>, we believe everyone deserves to feel beautiful. Founded with love and passion, our salon offers professional services in a calm, elegant atmosphere.</p>
+
+      <div class="team" aria-live="polite">
+        <!-- Founder (updated) -->
+        <div class="founder-wrapper" role="region" aria-label="Founder">
+          <!-- decorative blurred gradient behind the image -->
+          <div class="founder-bg" aria-hidden="true"></div>
+
+          <!-- The circular image sits inside this wrapper -->
+          <div class="founder-img-wrapper" id="founderContainer">
+            <!-- Default placeholder image:
+                 Replace the src with your hosted URL OR use the upload control below to set an image locally.
+                 Example: https://your-image-host.com/nandhu-founder.jpg
+            -->
+            <img id="founderImg" class="founder-img" alt="Nandhu — Founder & Lead Stylist"
+                 src="https://picsum.photos/seed/nandhu/600/600" />
+          </div>
+
+          <!-- Textual info -->
+          <div style="position: absolute; bottom:14px; left:50%; transform:translateX(-50%); width:100%; z-index:3; text-align:center;">
+            <div class="founder-info">
+              <div class="founder-name">Nandhu</div>
+              <div class="founder-role">Founder & Lead Stylist</div>
+              <div style="font-size:0.83rem;color:#5a4b6e;margin-top:8px">DEEKSHU Beauty Parlour</div>
+
+              <!-- Upload / replace controls -->
+              <div class="upload-cta" style="margin-top:12px">
+                <input id="founderFile" type="file" accept="image/*">
+                <label for="founderFile" title="Replace Founder Image">Replace Founder Image</label>
+                <button class="clear-btn" id="resetFounder" type="button">Reset</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other team member -->
+        <div class="member" aria-label="Team member">
+          <img src="https://picsum.photos/200?random=6" alt="Shubha" style="width:200px;height:200px;border-radius:12px;object-fit:cover">
+          <h3>Shubha</h3>
+          <p>Makeup Artist</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HELP / FAQ -->
+    <section id="help" style="margin-top:28px">
+      <h2 class="section-title">Help & FAQs</h2>
+      <div style="max-width:760px;margin:0 auto">
+        <button class="faq-question" style="width:100%;margin-bottom:8px;padding:12px;border-radius:9px;background:#faf0f6;border:0;cursor:pointer;text-align:left">How do I book an appointment?</button>
+        <div class="faq-answer" style="display:none;margin-bottom:8px;padding:12px;background:#f3e9f2;border-radius:8px">Click “Book Appointment” and fill the booking form. We’ll confirm the slot via phone or email.</div>
+
+        <button class="faq-question" style="width:100%;margin-bottom:8px;padding:12px;border-radius:9px;background:#faf0f6;border:0;cursor:pointer;text-align:left">Do you accept walk-ins?</button>
+        <div class="faq-answer" style="display:none;margin-bottom:8px;padding:12px;background:#f3e9f2;border-radius:8px">Yes, but booking in advance ensures your preferred slot.</div>
+
+        <button class="faq-question" style="width:100%;margin-bottom:8px;padding:12px;border-radius:9px;background:#faf0f6;border:0;cursor:pointer;text-align:left">What payment methods do you accept?</button>
+        <div class="faq-answer" style="display:none;margin-bottom:8px;padding:12px;background:#f3e9f2;border-radius:8px">We accept cash, cards, and digital payments (GPay, Paytm, etc.).</div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" style="margin-top:28px;margin-bottom:28px">
+      <h2 class="section-title">Contact Us</h2>
+      <form id="contactForm" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© <strong>DEEKSHU</strong> — All Rights Reserved. <span style="color:#777">2025</span></p>
+    <div style="margin-top:8px">
+      <a href="#" title="Instagram" style="margin-right:12px;color:var(--accent)"><i class="fab fa-instagram"></i></a>
+      <a href="#" title="Facebook" style="margin-right:12px;color:var(--accent)"><i class="fab fa-facebook"></i></a>
+      <a href="#" title="WhatsApp" style="color:var(--accent)"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </footer>
+
+  <!-- JS: interactions + file upload to replace founder image -->
+  <script>
+    // Smooth scroll to anchor links
+    document.querySelectorAll('nav a').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if(href && href.startsWith('#')){
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({behavior:'smooth'});
+          document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));
+          a.classList.add('active');
+        }
+      });
+    });
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-question').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const ans = btn.nextElementSibling;
+        ans.style.display = (ans.style.display === 'block') ? 'none' : 'block';
+      });
+    });
+
+    // Booking form submit
+    document.getElementById('bookingForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Appointment booked successfully!');
+      this.reset();
+    });
+
+    // Contact form submit
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Message sent successfully!');
+      this.reset();
+    });
+
+    // Founder image upload handling:
+    const fileInput = document.getElementById('founderFile');
+    const founderImg = document.getElementById('founderImg');
+    const resetBtn = document.getElementById('resetFounder');
+
+    // Store original src to allow reset
+    const originalSrc = founderImg.src;
+
+    fileInput.addEventListener('change', (ev)=>{
+      const file = ev.target.files && ev.target.files[0];
+      if(!file) return;
+      // Very small client-side validation (size)
+      if(file.size > 6 * 1024 * 1024){
+        alert('Please choose an image smaller than 6MB for faster loading.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(e){
+        // e.target.result is a data URL. Set it as the founder image src.
+        founderImg.src = e.target.result;
+        // Optional: briefly show a success prompt
+        setTimeout(()=>{ alert('Founder image replaced locally — remember to save your file if you want to keep it.'); }, 400);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Reset button to fallback placeholder
+    resetBtn.addEventListener('click', ()=>{
+      fileInput.value = '';
+      founderImg.src = originalSrc;
+      alert('Founder image reset to the default placeholder.');
+    });
+
+    // Optional: keyboard accessibility for upload label
+    document.querySelector('label[for="founderFile"]').addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' || e.key === ' ') document.getElementById('founderFile').click();
+    });
+
+    // Small UX: make founder image clickable to open image in new tab
+    document.getElementById('founderImg').style.cursor = 'pointer';
+    document.getElementById('founderImg').addEventListener('click', ()=>{
+      window.open(founderImg.src, '_blank');
+    });
+  </script>
+</body>
+</html>
